@@ -36,10 +36,10 @@ on:
 
 env:
   AZURE_CONTAINER_REGISTRY: "sobrian"
-  CONTAINER_NAME: "your-container-name"
+  CONTAINER_NAME: "openai-service"
   RESOURCE_GROUP: "sobrian"
-  CLUSTER_NAME: "your-cluster-name"
-  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
+  CLUSTER_NAME: "sobrian"
+  DEPLOYMENT_MANIFEST_PATH: "./manifest.yaml"
 
 jobs:
   buildImage:
