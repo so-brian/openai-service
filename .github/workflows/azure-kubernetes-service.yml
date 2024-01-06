@@ -35,9 +35,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: "your-azure-container-registry"
+  AZURE_CONTAINER_REGISTRY: "sobrian"
   CONTAINER_NAME: "your-container-name"
-  RESOURCE_GROUP: "your-resource-group"
+  RESOURCE_GROUP: "sobrian"
   CLUSTER_NAME: "your-cluster-name"
   DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
 
