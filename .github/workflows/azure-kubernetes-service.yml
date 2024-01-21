@@ -37,7 +37,8 @@ on:
 env:
   AZURE_CONTAINER_REGISTRY: "sobrian"
   CONTAINER_NAME: "openai-service"
-  RESOURCE_GROUP: "sobrian"
+  CONTAINER_RESOURCE_GROUP: "sobrian"
+  K8S_RESOURCE_GROUP: "sobrian-k8s"
   CLUSTER_NAME: "sobrian"
   DEPLOYMENT_MANIFEST_PATH: "./manifest.yaml"
 
@@ -62,7 +63,7 @@ jobs:
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
         run: |
-          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
+          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.CONTAINER_RESOURCE_GROUP }} .
 
   deploy:
     permissions:
@@ -93,7 +94,7 @@ jobs:
       - name: Get K8s context
         uses: azure/aks-set-context@v3
         with:
-          resource-group: ${{ env.RESOURCE_GROUP }}
+          resource-group: ${{ env.K8S_RESOURCE_GROUP }}
           cluster-name: ${{ env.CLUSTER_NAME }}
           admin: 'false'
           use-kubelogin: 'true'
