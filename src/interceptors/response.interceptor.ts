@@ -18,6 +18,12 @@ export class Response<T> {
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
     intercept(context: ExecutionContext, call$: CallHandler<T>): Observable<Response<T>> {
-        return call$.handle().pipe(map(data => (new Response<T>(data, "success"))));
+        return call$.handle().pipe(map(data => {
+            if (data instanceof Response) {
+                return data;
+            } else {
+                return new Response<T>(data, 'success');
+            }
+        }));
     }
 }
