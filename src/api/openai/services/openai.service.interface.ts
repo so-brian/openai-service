@@ -1,5 +1,5 @@
-import { Chat } from "../models";
-
-export interface IOpenAiService {
+export interface IOpenAIService {
     chat(sessionId: string, message: string): Promise<string>;
 }
+
+export const IOpenAIServiceToken = 'IOpenAIService';

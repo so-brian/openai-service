@@ -1,10 +1,11 @@
 import { TableClient } from "@azure/data-tables";
-import { IOpenAiService } from "./openai.service.interface";
+import { IOpenAIService } from "./openai.service.interface";
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential, ChatMessage, ChatRole, OpenAIClient } from "@azure/openai";
-import { table } from "console";
+import { Injectable } from "@nestjs/common";
 
-export class OpenAIService implements IOpenAiService {
+@Injectable()
+export class OpenAIService implements IOpenAIService {
     async chat(sessionId: string, message: string): Promise<string> {
         const tableName = 'openai';
         const url = 'https://sobrian.table.core.windows.net/';
