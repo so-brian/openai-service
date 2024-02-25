@@ -99,6 +99,15 @@ jobs:
           admin: 'false'
           use-kubelogin: 'true'
 
+      # Creates a secret for openai-service
+      - name: Create secret for openai-service
+        uses: Azure/k8s-create-secret@v2
+        with:
+          namespace: 'default'
+          secret-type: 'generic'
+          secret-name: openai-service-secret
+          data: '{"openai-service-azure-client-id": "${{ secrets.OPENAI_AZURE_CLIENT_ID }}","openai-service-azure-client-secret": "${{ secrets.OPENAI_AZURE_CLIENT_SECRET }}","openai-service-azure-tenant-id": "${{ secrets.OPENAI_AZURE_TENANT_ID }}"}'
+
       # Deploys application based on given manifest file
       - name: Deploys application
         uses: Azure/k8s-deploy@v4
